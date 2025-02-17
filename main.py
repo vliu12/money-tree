@@ -4,9 +4,12 @@ from tod import *
 
 def onAppStart(app):
     app.background = "lightblue"
-    app.width = 540
-    app.height = 860
+    app.width = 617
+    app.height = 1257
     app.timeOfDay = get_current_datetime()
+    app.backgroundImage = "images/homepage.png"
+    app.imageWidth, app.imageHeight = getImageSize(app.backgroundImage)
+    print(app.imageWidth, app.imageHeight)
 
 def onStep(app):
     app.stepsPerSecond = 60
@@ -17,15 +20,7 @@ def onStep(app):
 def redrawAll(app):
     drawRect(0, 0, app.width, app.height,  fill = app.background)
     drawLabel(app.timeOfDay.time, app.width/2, app.height/2, font = "Arial", size = 40, fill = "black")
+    drawImage(app.backgroundImage, 0, 0, width=app.imageWidth, height=app.imageHeight,
+          opacity=100, rotateAngle=0, align='left-top', visible=True)
 
-def get_current_time():
-    """
-    Get the current date and time from the system.
-
-    :return: A DateTime object with the current date and time.
-    """
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")  # Format: HH:MM:SS
-    return DateTime(current_time)
-
-runApp(width=540, height=860)
+runApp(width=app.width, height=app.height)
