@@ -1,4 +1,5 @@
 from cmu_graphics import *
+from tree import *
 
 def onAppStart(app):
     pass
